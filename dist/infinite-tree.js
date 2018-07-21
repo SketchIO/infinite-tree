@@ -1336,6 +1336,7 @@ var InfiniteTree = function (_events$EventEmitter) {
         var deleteCount = parentNode.state.total;
         var nodes = (0, _flattree.flatten)(parentNode.children, { openNodes: this.state.openNodes });
         var rows = [];
+
         // Update rows
         rows.length = nodes.length;
         for (var i = 0; i < nodes.length; ++i) {
@@ -2980,7 +2981,10 @@ var flatten = function flatten() {
                 var openAllNodes = options.openAllNodes,
                     openNodes = options.openNodes;
 
-                if (openAllNodes) {
+				if (node.state && node.state.open) {
+					return true;
+				}
+				if (openAllNodes) {
                     return true;
                 }
                 // determine by node object
